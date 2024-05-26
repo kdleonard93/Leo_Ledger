@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+<style>
+.st0 {fill: #F9A825;}
+.st1 {fill: none; stroke: #333333; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round;}
+</style>
+<circle class="st0" cx="75" cy="75" r="70"/>
+<line class="st1" x1="40" y1="105" x2="110" y2="45"/>
+<polyline class="st1" points="60,75 75,90 90,75 "/>
+</svg>

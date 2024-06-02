@@ -33,7 +33,7 @@ class Command(BaseCommand):
                 username='kdleo93', password='awesome1234')
 
         categories = Category.objects.all()
-        types = [x[0] for x in Transaction.TRANSACTION_TYPE_CHOICE]
+        types = [x[0] for x in Transaction.TRANSACTION_TYPE_CHOICES]
         for i in range(20):
             Transaction.objects.create(
                 category=random.choice(categories),

@@ -1,4 +1,5 @@
 {% extends 'tracker/base.html' %}
+{% load widget_tweaks %}
 
 {% block head_title %}
     Transactions List
@@ -13,6 +14,16 @@
     </svg>
     Transactions List
 </h1>
+
+<di method="GET">
+    <div class=" mb-2 form-control">
+        {{ filter.form.transaction_type|add_label_class:"label text-white" }}
+        {% render_field filter.form.transaction_type class="select bg-gray-50 text-gray-900 "%}
+    </div>
+
+</div>
+
+
 
 <div class="relative overflow-x-auto text-white">
     {% include 'tracker/partials/transactions-container.html' %}

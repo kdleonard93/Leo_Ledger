@@ -17,7 +17,7 @@ def transactions_list(request):
     )
     context = {'filter': transaction_filter}
 
-    # if request.htmx:
-    #     return render(request, 'tracker/partials/transactions-container.html', context)
+    if request.htmx:
+        return render(request, 'tracker/partials/transactions-container.html', context)
 
     return render(request, 'tracker/transactions-list.html', context)

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import pytest
 from django.urls import reverse
-from tracker.models import Category
+from tracker.models import Category, Transaction
 from pytest_django.asserts import assertTemplateUsed
 
 @pytest.mark.django_db
@@ -81,7 +81,7 @@ def test_category_filter(user_transactions, client):
 
     for transaction in qs:
         assert transaction.category.pk in category_pks
-        
+
 @pytest.mark.django_db
 def test_add_transaction_request(user, transaction_dict_params, client):
     client.force_login(user)

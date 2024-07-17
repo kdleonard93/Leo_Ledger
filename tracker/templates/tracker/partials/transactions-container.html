@@ -69,10 +69,12 @@
                 {% partialdef transaction_list inline=True %}
                     {% for transaction in transactions %}
 
-                    {% if forloop.last %}
+                    {% if forloop.last and transactions.has_next %}
                         <tr hx-get="{% url 'get-transactions' %}?page={{transactions.next_page_number}}"
                         hx-trigger="revealed"
-                        hx-swap="afterend">
+                        hx-swap="afterend"
+                        hx-include="#filterform"
+                        hx-indicator="#spinner">
                     {% else %}
                         <tr>
                     {% endif %}
@@ -120,7 +122,9 @@
     <div class="col-span-1">
         <form hx-get="{% url 'transactions-list' %}"
             hx-target="#transaction-container"
-            hx-swap="outerHTML">
+            hx-swap="outerHTML"
+            id="filterform">
+            
             
             <div class="mb-2 form-control">
                 {{ filter.form.transaction_type|add_label_class:"label text-white" }}
@@ -147,3 +151,5 @@
         </form>
     </div>
 </div>
+
+<span id="spinner" class="loading loading-bars loading-lg htmx-indicator"></span>

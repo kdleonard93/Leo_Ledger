@@ -90,7 +90,7 @@ WSGI_APPLICATION = "finance_project.wsgi.application"
 if os.getenv('RENDER'):
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/mysite',
+            default='postgresql://postgres:postgres@localhost:5432/Leo_Ledger',
             conn_max_age=600
         )
     }

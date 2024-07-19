@@ -1,5 +1,7 @@
 from django.urls import path
 from tracker import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -11,3 +13,6 @@ urlpatterns = [
     path('transactions/<int:pk>/delete/', views.delete_transaction, name='delete-transaction'),
     path('get-transactions/', views.get_transactions, name='get-transactions'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

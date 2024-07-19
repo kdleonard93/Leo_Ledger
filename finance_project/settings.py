@@ -90,7 +90,7 @@ WSGI_APPLICATION = "finance_project.wsgi.application"
 if os.getenv('RENDER'):
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/Leo_Ledger',
+            default='postgresql://postgres:postgres@localhost:5432/finance_project',
             conn_max_age=600
         )
     }
@@ -137,7 +137,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)

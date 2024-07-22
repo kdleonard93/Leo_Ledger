@@ -7,6 +7,8 @@ from tracker.models import Transaction
 from tracker.filters import TransactionFilter
 from tracker.forms import TransactionForm
 from django_htmx.http import retarget
+import logging
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def index(request):
@@ -15,10 +17,13 @@ def index(request):
 
 @login_required
 def transactions_list(request):
+    logger.debug(f"GET parameters: {request.GET}")
     transaction_filter = TransactionFilter(
         request.GET,
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
+    logger.debug(f"Filter created: {transaction_filter}")
+    logger.debug(f"Filter form: {transaction_filter.form}")
     paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
     transaction_page = paginator.page(1) #default to page 1
     total_income = transaction_filter.qs.get_total_income()

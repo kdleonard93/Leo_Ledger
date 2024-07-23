@@ -11,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-hfjjz86s+pz6y4p=&mxz)dis&l$+mt2)6r$ho@))^5))f#$whp"
+SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.getenv('RENDER') else True
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
 ALLOWED_HOSTS = ['leo-ledger.onrender.com', 'localhost', '127.0.0.1']
 
@@ -88,12 +88,14 @@ WSGI_APPLICATION = "finance_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if os.getenv('RENDER'):
-    DATABASES = {
-        'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/finance_project',
-            conn_max_age=600
-        )
-    }
+    DATABASE_URL = os.getenv('DATABASE_URL')
+    print("Database URL:", DATABASE_URL)  # Debug print
+    if DATABASE_URL:
+        DATABASES = {
+            'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+        }
+    else:
+        raise ValueError("DATABASE_URL environment variable not set")
 else:
     DATABASES = {
         "default": {

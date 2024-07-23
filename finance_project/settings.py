@@ -88,17 +88,12 @@ WSGI_APPLICATION = "finance_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if os.getenv('RENDER'):
-    DATABASE_URL = os.getenv('DATABASE_URL')
-    if DATABASE_URL:
-        DATABASES = {
-            'default': dj_database_url.config(
-                default=DATABASE_URL,
-                conn_max_age=600,
-                conn_health_checks=True,
-            )
-        }
-    else:
-        raise Exception("DATABASE_URL environment variable is not set.")
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgresql://postgres:postgres@localhost:5432/finance_project',
+            conn_max_age=600
+        )
+    }
 else:
     DATABASES = {
         "default": {

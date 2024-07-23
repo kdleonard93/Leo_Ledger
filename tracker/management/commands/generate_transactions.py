@@ -21,6 +21,7 @@ class Command(BaseCommand):
             "Social",
             "Transport",
             "Vacation",
+            "Leisure",
         ]
 
         for category in categories:

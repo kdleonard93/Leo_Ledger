@@ -142,7 +142,13 @@
             </div>   
 
             <div class="mb-4 form-control">
-                {% render_field filter.form.category class="text-green-500 border-gray-300 rounded focus:ring-green-500" %}
+                {{ filter.form.category|add_label_class:"label text-white" }}
+                <div class="grid grid-cols-2 gap-2">
+                    {% for value, label in filter.form.category.field.choices %}
+                        <input type="checkbox" name="category" value="{{ value }}" id="category_{{ value }}" class="hidden" />
+                        <label for="category_{{ value }}" class="btn btn-outline btn-sm">{{ label }}</label>
+                    {% endfor %}
+                </div>
             </div>
 
             <button class="btn btn-success">

@@ -7,3 +7,21 @@ nav {
     color: white;
     background-color: #182c34;
 }
+
+.btn-outline {
+    border-color: var(--fallback-bc, oklch(var(--bc) / var(--tw-border-opacity)));
+    background-color: var(--fallback-bc, oklch(var(--bc) / var(--tw-bg-opacity)));
+    color: var(--fallback-b1, oklch(var(--b1) / var(--tw-text-opacity)));
+}
+
+.btn-outline:hover {
+    border-color: hsl(222, 47%, 20%, var(--tw-border-opacity)); 
+    background-color: hsl(60, 6%, 90%, var(--tw-bg-opacity)); 
+    color: hsl(222, 47%, 20%, var(--tw-text-opacity)); 
+}
+
+.btn-outline.btn-active {
+    background-color: hsl(78, 92%, 95%, var(--tw-bg-opacity));
+    border-color: hsl(78, 92%, 95%, var(--tw-border-opacity));
+    color: hsl(229, 84%, 5%, var(--tw-text-opacity));
+}

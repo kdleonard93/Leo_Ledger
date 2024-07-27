@@ -23,16 +23,20 @@
 
 **Technology Stack Decisions**
 
-1. **Frontend**: After exploring various options, I've landed on SvelteKit with TypeScript and Vite. Their modern architecture and fast rendering capabilities promise a seamless user experience.
+1. **Frontend**: After exploring various options, I chose HTMX for its simplicity and powerful capabilities in enhancing HTML with AJAX, WebSockets, and Server-Sent Events.
     
 2. **Backend**: I chose Python with Django over Flask for its flexibility and simplicity – crucial for potential future customizations.
     
-3. **Database**: CockroachDB won over Fauna for its strong consistency, transactional data integrity, and rich documentation for newcomers.
+3. **Database**: Using SQLite for development and PostgreSQL for production to ensure strong consistency, transactional data integrity, and scalability.
+   
+4. **Styling**: Daisy UI is used for styling to provide a clean and modern look to the application.
+   
+5. **Hosting**: The application is hosted on Render for its simplicity and robust hosting solutions.
     
 
 **Extra Tools**: I plan to Dockerize my app. Bun was considered, but it's currently on the "extra credit" list, possibly integrated at the project's end as an enhancement.
 
-**Rationale Behind Choices**: Each piece of the tech stack was selected for its strength and industry relevance. SvelteKit for frontend efficiency, Python and Flask for a flexible backend, and FaunaDB for robust serverless data management – a combination that I believe will address the needs of this project effectively.
+**Rationale Behind Choices**: Each piece of the tech stack was selected for its strength and industry relevance. HTMX for the frontend, Python and Django for a flexible backend, and SQLite + PostgreSQL for robust DEV and PROD data management, respectively – a combination that I believe will address the needs of this project effectively.
 
 ### **Project Timeline and Milestones**
 
@@ -58,3 +62,66 @@
 * **M3**: Beta Version *+Predictive Analysis* (End of Month 5)
     
 * **M4**: App Launch (End of Month 6)
+
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed on your machine:
+
+- Node.js (version 16 or higher)
+- Python (version 3.8 or higher)
+- Django
+- Git
+
+## Getting Started
+
+### Clone the repository:
+
+```bash
+git clone https://github.com/kdleonard93/Leo_Ledger.git
+cd Leo_Ledger
+```
+
+### Create a virtual env
+
+```bash
+python -m venv venv
+```
+
+### Activate your env
+
+```bash
+source venv/bin/activate
+```
+
+### Install required packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### Set up the Django environment variables. Create a .env file in the backend folder and add the following:
+
+```plaintext
+SECRET_KEY=your_secret_key
+DEBUG=True
+DATABASE_URL=sqlite:///db.sqlite3  # For development, use your PostgreSQL URL for production
+```
+
+### Apply Migrations
+
+```bash
+python manage.py migrate
+```
+
+### Collect static files
+```bash
+python manage.py collectstatic
+```
+
+### Run server
+```bash
+python manage.py runserver
+```
+
+#### This should get you going locally but please feel free to comment if it doesn't!
